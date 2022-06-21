@@ -58,6 +58,12 @@ class PostsService{
         logger.log('here is the appstate searchedPosts after search', AppState.searchedPosts)
     }
 
+    async deletePost(postId){
+        await api.delete('api/posts/'+postId)
+        AppState.posts = AppState.posts.filter(p => p.id != postId)
+        logger.log('removing from AppState', postId)
+    }
+
 }
 
 

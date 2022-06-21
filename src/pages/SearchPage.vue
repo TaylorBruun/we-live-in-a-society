@@ -1,4 +1,6 @@
 <template>
+<div class="container-fluid">
+  
   <div class="search">
     <h1 class="m-3">Search for Posts:</h1>
   </div>
@@ -10,8 +12,9 @@
   <h1 class="m-3">Search Results:</h1>
 
   <div class="row d-flex flex-column">
-    <Post v-for="p in posts" :key="p.id" :post="p" />
+    <Post  v-for="s in searchedPosts" :key="s.id" :post="s" />
   </div>
+    </div>
 
 
 </template>
@@ -31,7 +34,7 @@ export default {
         return {
             search,
             posts: computed(() => AppState.posts),
-            searchPosts: computed(() => AppState.searchedPosts),
+            searchedPosts: computed(() => AppState.searchedPosts),
             async searchPosts() {
                 try {
                     await postsService.getSearchPosts(search.value);

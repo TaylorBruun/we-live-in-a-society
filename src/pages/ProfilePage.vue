@@ -1,16 +1,19 @@
 <template>
-    <div class="component">
-        <img class="sized-img img-fluid" :src="profile.picture" alt="">
-        <h3>{{ profile.name }}</h3>
-        <p>{{ profile.bio }}</p>
-        <p>{{ profile.github }}</p>
-        <p>{{ profile.linkedin }}</p>
-        <p>{{ profile.resume }}</p>
+    <div class="component post-card d-flex flex-column">
+        <img class="sized-img img-fluid m-5" :src="profile.picture" alt="">
+        <h3 class="m-2">{{ profile.name }}</h3>
+        <p class=" m-2 text-muted">{{ profile.bio }}</p>
+        
+        <h5 class='m-2'>Profile links:</h5>
+        <a class="m-2 text-decoration-underline link-text" :href="profile.github">Github</a>
+        <a class="m-2 text-decoration-underline link-text" :href="profile.linkedin">LinkedIn</a>
+        <a class="m-2 text-decoration-underline link-text" :href="profile.resume">Resume</a>
+        
         <img class="sized-img" :src="profile.coverImg" alt="">
-        <p>Graduated: {{ profile.graduated }}</p>
-        <p>{{profile.class}}</p>
+        <p class="m-2">Graduated: {{ profile.graduated }}</p>
+        <p class="m-2">{{profile.class}}</p>
 
-        <h3>{{profile.name}}'s Posts:</h3>
+        <h3 class="m-2">{{profile.name}}'s Posts:</h3>
         <Post v-for="p in profilePosts" :key="p.id" :post="p" />
 
     </div>
@@ -58,5 +61,16 @@ export default {
 <style lang="scss" scoped>
 .sized-img{
     max-height: 20vh;
+    object-fit: contain;
 }
+.post-card{
+background-color: rgb(191, 174, 255);
+}
+.link-text{
+    color: rgb(6, 0, 59)
+}
+
+
+
+
 </style>

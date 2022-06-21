@@ -33,6 +33,7 @@ export default {
     height: 20vh;
     // max-width: 50vh;
     object-fit: contain;
+    z-index: 1200;
     
     
  }
