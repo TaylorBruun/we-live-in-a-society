@@ -14,6 +14,7 @@
         <Post v-for="p in profilePosts" :key="p.id" :post="p" />
 
     </div>
+    <ProfilePageButtons />
 </template>
 
 
@@ -26,6 +27,8 @@ import { useRoute } from 'vue-router';
 import {AppState} from '../AppState'
 import Post from '../components/Post.vue';
 import { postsService } from '../services/PostsService';
+import PageButtons from '../components/PageButtons.vue';
+import ProfilePageButtons from '../components/ProfilePageButtons.vue';
 
 export default {
     setup() {
@@ -47,7 +50,7 @@ export default {
             profilePosts: computed(() => AppState.profilePosts)
         };
     },
-    components: { Post }
+    components: { Post, PageButtons, ProfilePageButtons }
 }
 </script>
 

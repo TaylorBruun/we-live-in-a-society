@@ -1,10 +1,10 @@
 <template>
-<div class="row">
-    <div v-if="ads" class="container-fluid">
-        <div class="col-12">
-            <img class="img-fluid banner-img" :src="ads[0].banner" alt="">
+<div class="row container-fluid">
+    <div v-if="ads" class="p-0">
+        <div class="col-12 ">
+            <img class="img-fluid banner-img" :src="ads[0]?.banner" alt="">
         </div>
-        <img class="img-fluid position-fixed bottom-0 banner-img" :src="ads[1].banner" alt="">
+        <img class="img-fluid position-fixed bottom-0 banner-img" :src="ads[1]?.banner" alt="">
 
     </div>
 
@@ -31,6 +31,9 @@ export default {
 <style lang="scss" scoped>
  .banner-img{
     height: 20vh;
+    // max-width: 50vh;
+    object-fit: contain;
+    
     
  }
 </style>

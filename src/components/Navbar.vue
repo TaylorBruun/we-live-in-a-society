@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         
@@ -20,10 +20,10 @@
       <ul class="navbar-nav me-auto">
         <li>
           <router-link
-            :to="{ name: 'About' }"
+            :to="{ name: 'Search' }"
             class="btn text-success lighten-30 selectable text-uppercase"
           >
-            About
+            Search
           </router-link>
         </li>
         

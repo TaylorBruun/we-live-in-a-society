@@ -1,27 +1,19 @@
 <template>
-<!-- TODO need to make the date pretty -->
-    <div class="col elevation-5 my-2 p-2 post-card">
-        <h3> <router-link :to="{ name : 'Profile', params: {id: post.creatorId}}"> <img class="img-profile img-fluid" :src="post.creator.picture" alt=""><span class=" display-5">{{post.creator.name}}</span></router-link></h3> 
-        <p class="text-muted">{{prettyDate(post.createdAt)}}</p>
-        <img class="img-fluid post-img" :src="post.imgUrl" alt="">
-        <p class=" m-0">{{post.body}}</p>
-        <!-- <p v-if="likedPost" class = "fs-1"><i @click="likePost" class="mdi selectable mdi-heart"></i> {{post.likes.length}}</p> -->
-        <p  class = "fs-1"><i @click="likePost" class="mdi selectable mdi-heart-outline"></i> {{post.likes.length}}</p>
-    </div>
+    
 </template>
 
 <script>
 import { computed, onMounted } from 'vue'
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
-import {postsService} from '../services/PostsService'
 import {likesService} from '../services/LikesService'
 import {AppState} from '../AppState'
 
 export default {
-    props: { post: { type: Object, required: true } },
+    props: { searchedPost: { type: Object, required: true } },
     setup(props){
         return {
+            searchedPosts: computed(()=> AppState.searchedPosts),
             async likePost() {
                 try {
                     

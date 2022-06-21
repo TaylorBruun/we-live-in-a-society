@@ -1,9 +1,9 @@
 <template>
-  <header>
+  <header class="">
     <Navbar />
   </header>
   <main>
-    <!-- <PremiumContent /> -->
+    <PremiumContent />
     <router-view />
   </main>
   <footer>

@@ -1,12 +1,11 @@
 <template>
 <div class="container-fluid">
   <div class="row d-flex flex-column">
+    <NewPost v-if="account?.id" />
     <Post v-for="p in posts" :key="p.id" :post="p" />
 
   </div>
-  <div>
-    
-  </div>
+  <PageButtons />
 </div>
 </template>
 
@@ -18,11 +17,13 @@ import { postsService } from '../services/PostsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import PremiumContent from '../components/PremiumContent.vue';
+import PageButtons from '../components/PageButtons.vue';
+import NewPost from '../components/NewPost.vue';
 
 
 export default {
     name: "Home",
-    components: { Post, PremiumContent },
+    components: { Post, PremiumContent, PageButtons, NewPost },
     setup(){
         onMounted(async ()=> {
                 try {
@@ -33,7 +34,19 @@ export default {
                 }
         });
         return {
-          posts: computed(() => AppState.posts)
+          nextPage: computed(()=> AppState.nextPage),
+          prevPage: computed(()=> AppState.previousPage),
+          posts: computed(() => AppState.posts),
+          account: computed(()=> AppState.account),
+          async changePage(pageUrl){
+            try {
+              await postsService.getPostsByPage(pageUrl)
+              logger.log('sending to service from homepage', pageUrl)
+            } catch (error) {
+              logger.error(error)
+              Pop.toast(error.message, 'error')
+            }
+          }
         }
     }
 }
