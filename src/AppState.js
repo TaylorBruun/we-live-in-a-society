@@ -11,4 +11,5 @@ export const AppState = reactive({
   nextPage: null,
   previousPage: null,
   searchedPosts: [],
+  editingAccount: false
 })

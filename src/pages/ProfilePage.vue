@@ -1,5 +1,7 @@
 <template>
     <div class="component post-card d-flex flex-column">
+
+        <EditProfile :profile="profile"/>
         <img class="sized-img img-fluid m-5" :src="profile.picture" alt="">
         <h3 class="m-2">{{ profile.name }}</h3>
         <p class=" m-2 text-muted">{{ profile.bio }}</p>
@@ -32,6 +34,7 @@ import Post from '../components/Post.vue';
 import { postsService } from '../services/PostsService';
 import PageButtons from '../components/PageButtons.vue';
 import ProfilePageButtons from '../components/ProfilePageButtons.vue';
+import EditProfile from '../components/EditProfile.vue';
 
 export default {
     setup() {
@@ -48,12 +51,13 @@ export default {
                 logger.error(error);
             }
         });
+        onMounted(()=>AppState.editingAccount = false)
         return {
             profile: computed(() => AppState.activeProfile),
             profilePosts: computed(() => AppState.profilePosts)
         };
     },
-    components: { Post, PageButtons, ProfilePageButtons }
+    components: { Post, PageButtons, ProfilePageButtons, EditProfile }
 }
 </script>
 
